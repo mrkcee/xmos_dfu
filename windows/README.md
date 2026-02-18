@@ -12,10 +12,8 @@ A command line alternative to the firmware upgrade tool at [core.jdslabs.com](ht
 
 Two firmware images are provided:
 
-| Image | For devices running... |
-|-------|------------------------|
-| **v1.5.1** | Older firmware (before v1.5.1) |
-| **v1.7.4** | v1.5.1 or later |
+- Element IV v1.5.1
+- Element IV v1.7.4
 
 If your Element 4 is running firmware older than v1.5.1, flash **v1.5.1 first**, then flash **v1.7.4**.
 
@@ -42,7 +40,12 @@ If your Element 4 is running firmware older than v1.5.1, flash **v1.5.1 first**,
 
 Use option **3** to check your current firmware version before flashing.
 
-## Troubleshooting
+## Why use this tool?
 
-- **Device not detected:** Ensure your Element 4 is connected and powered on. Try a different USB port or cable.
-- **Script closes immediately:** Right-click `flash-element4.bat` and select *Run as administrator*.
+Firmware updates for Element 4 are normally performed through [core.jdslabs.com](https://core.jdslabs.com), which updates your device directly from the browser. This works reliably on macOS, Linux, and the vast majority of Windows PCs.
+
+However, around 1% of devices have been found to fail to upgrade beyond `v1.5.1`. This is believed to be a WinUSB driver limitation: some flash chips time out via WebUSB for firwmares > `v1.5.1`. If your firmware update fails or stalls at 0% through core.jdslabs.com, there are three possible solutions. 
+
+- Upgrade firmare through core.jdslabs.com using a macOS or Linux system.
+- Reach out to jdslabs.com/support and we will replace the flash IC for you. We'll cover shipping both ways.
+- Use this tool.
