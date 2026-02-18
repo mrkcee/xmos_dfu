@@ -77,3 +77,38 @@ You will need to edit the path to reflect the full path of your downloaded firmw
 ```
 sudo ./xmosdfu --download "/edit/this/path/Atom_DAC_Plus-v184.bin"
 ```
+
+# Usage in Windows
+This process has been tested under Windows 10.
+
+## Prerequisites
+1. Install [MSYS2](https://www.msys2.org/)
+2. Open the **MSYS2 MinGW64** terminal (not MSYS or UCRT64) from your Start menu
+3. Install the required packages:
+```bash
+pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-libusb make pkg-config
+```
+
+## Loading Firmware in Windows
+
+1. Open the **MSYS2 MinGW64** terminal and navigate to the project folder:
+```bash
+cd /c/path/to/xmos_dfu/xmos_dfu
+```
+
+2. Compile using the Windows target. Warnings may be ignored:
+```bash
+make windows
+```
+
+3. You can now run `xmosdfu.exe` from either the MSYS2 terminal or a standard Command Prompt/PowerShell. Verify your DAC is connected:
+```cmd
+xmosdfu.exe --listdevices
+```
+
+4. To flash new firmware, download the [desired .bin file](https://blog.jdslabs.com/2020/08/custom-firmware-builds-for-element-ii-el-dac-ii-and-atom-dac/), then run the command below. *Only 1 DAC may be plugged in at a time!*
+```cmd
+xmosdfu.exe --download "C:\path\to\firmware.bin"
+```
+
+**Note**: A direct USB 2.0/3.0 connection is required. USB hubs and some USB-C ports may prevent DFU communication.

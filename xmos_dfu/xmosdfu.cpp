@@ -44,13 +44,25 @@ DEALINGS WITH THE SOFTWARE OR DOCUMENTATION.
 #include <string.h>
 #include <time.h>
 
+#ifdef _WIN32
+  #include <windows.h>
+  #define sleep_seconds(s) Sleep((s) * 1000)
+#else
+  #include <unistd.h>
+  #define sleep_seconds(s) sleep(s)
+#endif
+
 /* libusb 1.0.0-dev must be installed. Please see README */
 #ifdef __linux
   #include <libusb-1.0/libusb.h>
 #endif
 
 #ifdef __APPLE__
-#include "libusb.h"
+  #include "libusb.h"
+#endif
+
+#ifdef _WIN32
+  #include <libusb-1.0/libusb.h>
 #endif
 
 /* the device's vendor and product id */
@@ -509,7 +521,7 @@ int main(int argc, char **argv) {
     printf("Waiting for XMOS device to restart and enter DFU mode...\n");
 
     // Wait for device to enter dfu mode and restart
-    system("sleep 3");
+    sleep_seconds(3);
 
     // NOW IN DFU APPLICATION MODE
 
@@ -558,7 +570,7 @@ int main(int argc, char **argv) {
     printf("... Reverting DAC to factory image\n");
     xmos_dfu_revertfactory(); 
     // Give device time to revert firmware
-    system("sleep 2");
+    sleep_seconds(2);
     xmos_dfu_resetfromdfu(XMOS_DFU_IF);
   } 
   else{

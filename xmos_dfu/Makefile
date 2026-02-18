@@ -12,5 +12,9 @@ mac: xmosdfu.cpp
 
 mac-m1: mac
 
+# Windows target (MSYS2/MinGW-w64)
+windows: xmosdfu.cpp
+	$(CC) $(CFLAGS) -o xmosdfu.exe xmosdfu.cpp -I. `pkg-config --cflags --libs libusb-1.0`
+
 clean:
 	rm -f xmosdfu
