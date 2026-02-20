@@ -48,3 +48,9 @@ However, around 1% of devices have been found to fail to upgrade beyond `v1.5.1`
 - Upgrade firmawre through core.jdslabs.com using a macOS or Linux system.
 - Reach out to jdslabs.com/support and we will replace the flash IC for you. We'll cover shipping both ways.
 - Use this tool.
+
+## Dependencies
+
+A pre-compiled `libusb-1.0.dll` (release 1.0.22) for Windows x64 is included from libusb and is licensed under LGPL v2.1. Source code is available at that repository.
+
+https://github.com/libusb/libusb/releases/
